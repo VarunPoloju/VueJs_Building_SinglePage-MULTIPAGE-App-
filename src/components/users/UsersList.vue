@@ -1,4 +1,5 @@
 <template>
+  <button @click="confirm">Confirm</button>
   <ul>
     <user-item v-for="user in users" :key="user.id" :name="user.fullName" :role="user.role"></user-item>
   </ul>
@@ -10,6 +11,11 @@ import UserItem from './UserItem.vue';
 export default {
   components: {
     UserItem,
+  },
+  methods : {
+    confirm(){
+      this.$router.push('/teams')
+    }
   },
   inject: ['users'],
 };
