@@ -5,7 +5,7 @@ import UsersList from './components/users/UsersList.vue';
 import TeamMembers from '@/components/teams/TeamMembers';
 import NotFound from '@/components/nav/NotFound';
 import UsersFooter from './components/users/UsersFooter.vue';
-import  TeamsFooter  from './components/teams/TeamsFooter.vue';
+import TeamsFooter from './components/teams/TeamsFooter.vue';
 
 import App from './App.vue';
 const router = createRouter({
@@ -28,12 +28,26 @@ const router = createRouter({
         },
       ],
     },
-    { path: '/users', components: {
-      default : UsersList , footer : UsersFooter
-    } },
+    {
+      path: '/users',
+      components: {
+        default: UsersList,
+        footer: UsersFooter,
+      },
+    },
     { path: '/:notFound(.*)', component: NotFound },
   ],
   linkActiveClass: 'active',
+  scrollBehavior(to, from, savedPosition) {
+    // console.log(to, from, savedPosition);
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return {
+      left: 0,
+      top: 0,
+    };
+  },
 });
 const app = createApp(App);
 app.use(router);
