@@ -58,6 +58,12 @@ router.beforeEach(function (to, from, next) {
   next();
 });
 
+router.afterEach(function (to, from) {
+  //runs only once navigation confirmed
+  // used for sending analytics data
+  console.log(to, from);
+});
+
 const app = createApp(App);
 app.use(router);
 
